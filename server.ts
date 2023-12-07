@@ -8,18 +8,18 @@ app.use(express.json());
 interface Vehicle {
   model: String;
   color: String;
-  year: Number;
-  power: Number;
+  year: number;
+  power: number;
 }
 interface Car extends Vehicle {
   bodyType: String;
-  wheelCount: Number;
+  wheelCount: number;
 }
 interface Plane extends Vehicle {
-  wingspan: Number;
+  wingspan: number;
 }
 interface Boat extends Vehicle {
-  draft: Number;
+  draft: number;
 }
 
 // type union   adding base type also
@@ -27,11 +27,11 @@ type AnyVehicle = Car | Boat | Plane | Vehicle;
 
 // Server HTTP Routing
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response): void => {
   res.send("Index");
 });
 
-app.get("/hello", (req: Request, res: Response) => {
+app.get("/hello", (req: Request, res: Response): void => {
   const message: String = "Hello world";
   res.send(message);
 });
@@ -40,7 +40,7 @@ app.get("/hello", (req: Request, res: Response) => {
 let Garage: AnyVehicle[] = [];
 
 // post route
-app.post("/vehicle/add", (req: Request, res: Response) => {
+app.post("/vehicle/add", (req: Request, res: Response): void => {
   console.log("POST: " + JSON.stringify(req.body));
 
   let Vtype: String = "";
@@ -82,7 +82,7 @@ app.post("/vehicle/add", (req: Request, res: Response) => {
 });
 
 // Model based GET search
-app.get("/vehicle/search/:model", (req: Request, res: Response) => {
+app.get("/vehicle/search/:model", (req: Request, res: Response): void => {
   const model: String = req.params.model;
 
   const matches: AnyVehicle[] = Garage.filter((vehicle) => {
