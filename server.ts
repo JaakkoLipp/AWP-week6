@@ -78,7 +78,7 @@ app.post("/vehicle/add", (req: Request, res: Response) => {
   );
 
   //response
-  res.send("Vehicle " + Vtype + " added").status(201);
+  res.status(201).send("Vehicle " + Vtype + " added");
 });
 
 // Model based GET search
